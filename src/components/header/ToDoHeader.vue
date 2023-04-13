@@ -3,7 +3,7 @@
     <div class="container">
       <h1>Welcome to VueDo</h1>
       <ToDoInput />
-      <p>Completed 3 of 6 tasks</p>
+      <p>Completed {{ this.$store.getters.completedItems.length }} of {{ this.$store.state.items.length }} tasks</p>
     </div>
   </div>
 </template>

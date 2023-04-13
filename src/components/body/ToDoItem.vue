@@ -1,8 +1,10 @@
 <template>
     <div class="to-do-item">
-
-        <!-- <input type="checkbox" v-bind:checked="item.completed" v-on:change="changeCheck" /> -->
-        <input v-bind:disabled="!isEditing" v-model="newTitle" v-on:keyup.enter="updateItem">
+        <div class="item-left">
+            <input type="checkbox" v-bind:checked="item.completed" v-on:change="changeCheck" />
+        </div>
+        <input class="item" v-bind:class="{ completed: item.completed }" v-bind:disabled="!isEditing" v-model="item.title"
+            v-on:keyup.enter="updateItem">
         <div class="item-right">
             <i class="fas fa-edit green" @click="isEditing = true"></i>
             <i class="fas fa-trash red" @click="deleteItem(item.id)"></i>
@@ -14,22 +16,32 @@
 export default {
     name: 'ToDoItems',
     props: {
-        item: {
+        initialItem: {
             type: Object,
             required: true
         }
     }, data() {
         return {
+            item: { ...this.initialItem },
             isEditing: false,
-            newTitle: this.item.title
-
         };
     }, methods: {
         updateItem() {
-            console.log('updateItem');
+            this.$store.commit('updateItem', {
+                id: this.item.id,
+                completed: this.item.completed,
+                title: this.item.title
+            });
             this.isEditing = false;
-        },deleteItem(id) {
-            console.log('deleteItem',id);
+        }, deleteItem(id) {
+            this.$store.commit('deleteItem', { id });
+        }, changeCheck() {
+            this.item.completed = !this.item.completed;
+            this.$store.commit('updateItem', {
+                id: this.item.id,
+                completed: this.item.completed,
+                title: this.item.title
+            });
         }
     }
 }
@@ -40,23 +52,29 @@ export default {
 .to-do-item {
     margin-bottom: 10px;
     position: relative;
+    transition: transform .5s ease-in-out;
+    width: 500px;
 }
 
-input {
-    width: 500px;
-    padding: 12px 15px;
+.to-do-item:hover {
+    transform: scale(1.1, 1.1);
+}
+
+input.item {
+    width: 100%;
+    padding: 12px 15px 12px 35px;
     font-size: 20px;
     border: none;
     box-shadow: 6px 6px 8px rgb(112, 231, 159);
     border-radius: 20px 0 20px 0;
     border: 1px solid #80bdab;
     color: black;
-    transition: all .5s ease-in-out;
     outline: none;
 }
 
-input:hover {
-    transform: scale(1.1, 1.1);
+input.completed {
+    text-decoration: line-through;
+    color: #0075FF;
 }
 
 .item-right {
@@ -69,21 +87,45 @@ input:hover {
     transform: translate(-50%, -50%);
 }
 
+
+.item-left {
+
+    position: absolute;
+    top: 50%;
+    left: 0%;
+    transform: translate(50%, -50%);
+}
+
+.item-left input {
+    border-radius: 50%;
+
+}
+
 i {
     cursor: pointer;
     transition: all .2s ease-in-out;
 }
+
 i.green:hover {
     color: #4CAF50;
 }
+
 i.red:hover {
     color: #f44336;
 }
-i{
+
+i {
     margin-right: 2px;
 }
-i:last-of-type{
+
+i:last-of-type {
     margin-right: 0;
+}
+
+@media screen and (max-width: 600px) {
+    .to-do-item {
+        width: 100%;
+    }
 }
 </style>
     

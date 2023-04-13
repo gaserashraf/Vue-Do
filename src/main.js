@@ -1,8 +1,9 @@
-import Vue from 'vue'
-import App from './App.vue'
-
-Vue.config.productionTip = false
+import Vue from "vue";
+import App from "./App.vue";
+import { todoStore } from "./store/todoStore";
+Vue.config.productionTip = false;
 
 new Vue({
-  render: h => h(App),
-}).$mount('#app')
+  store: todoStore,
+  render: (h) => h(App),
+}).$mount("#app");
