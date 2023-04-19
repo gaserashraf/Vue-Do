@@ -51,7 +51,6 @@ npm run serve
 |       |-- todoStore.js
 ```
 # 📷 Demo Screenshots
-## For regex: ab(b|c)*d+
 <div name="screenshots" >
     <img src="screenshots/vueDo.PNG" width="100%" height="100%" />
 </div>
