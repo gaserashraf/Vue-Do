@@ -1,14 +1,14 @@
 📝 Table of Contents
 - [📙 About](#about)
-- [🏁 Install](#Install)
+- [🏁 Install](#install)
 - [💻 Built using](#tech)
-- [📂 Folder Structure](#FolderStructure)
-- [📷 Demo Screenshots](#Screenshots)
+- [📂 Folder Structure](#folderstructure)
+- [📷 Demo Screenshots](#screenshots)
 
 # 📙 About <a name = "about"></a>
 Vue Do is a sample to do list using Vue.js and Vuex for state management.
 
-# 🏁 Get started <a name = "Install"></a>
+# 🏁 Get started <a name = "install"></a>
 ```
 git clone https://github.com/gaserashraf/Regex-to-NFA-DFA.git
 ```
@@ -27,7 +27,7 @@ npm run serve
 - **Vuex**
 
 
-# 📂 Folder Structure <a name = "FolderStructure"></a>
+# 📂 Folder Structure <a name = "folderstructure"></a>
 ```
 |-- src',
 |   |-- App.vue',
@@ -52,6 +52,6 @@ npm run serve
 ```
 # 📷 Demo Screenshots
 ## For regex: ab(b|c)*d+
-<div name="Screenshots" >
+<div name="screenshots" >
     <img src="screenshots/vueDo.PNG" width="100%" height="100%" />
 </div>
