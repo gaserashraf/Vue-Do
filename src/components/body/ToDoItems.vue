@@ -1,6 +1,7 @@
 <template>
     <div class="container">
         <div id="to-do-items">
+            <p v-if="totalItems === 0">No items to display.</p>
             <ToDoItem v-for="item in items" :key="item.id" :initialItem="item" />
         </div>
     </div>
@@ -8,13 +9,12 @@
   
 <script>
 import ToDoItem from './ToDoItem.vue';
+import { mapGetters } from 'vuex';
 export default {
     name: "ToDoItems",
     components: { ToDoItem },
     computed: {
-        items() {
-            return this.$store.state.items;
-        }
+        ...mapGetters(['items','totalItems'])
     }
 }
 </script>

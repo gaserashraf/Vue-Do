@@ -3,17 +3,20 @@
     <div class="container">
       <h1>Welcome to VueDo</h1>
       <ToDoInput />
-      <p>Completed {{ this.$store.getters.completedItems.length }} of {{ this.$store.state.items.length }} tasks</p>
+      <p>Completed {{ totalCompletedItems }} of {{ totalItems }} tasks</p>
     </div>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import ToDoInput from '../header/ToDoInput.vue';
 export default {
   name: 'ToDoHeader',
   components: {
     ToDoInput
+  }, computed: {
+    ...mapGetters(['totalItems', 'totalCompletedItems'])
   }
 }
 </script>
@@ -30,7 +33,8 @@ export default {
 #to-do-header h1 {
   font-size: 40px;
 }
-p{
+
+p {
   margin-bottom: 0;
 }
 </style>

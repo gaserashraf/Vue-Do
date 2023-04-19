@@ -1,13 +1,32 @@
 <template>
     <div id="to-do-input">
-        <input type="text" placeholder="Add thing to do" id="input">
-        <button class="reset-button custom-button" id='butAdd'>Add</button>
+        
+        <input type="text" placeholder="Add thing to do" id="input" v-model="title"  v-on:keyup.enter="addItem">
+        <button class="reset-button custom-button" id='butAdd' v-on:click="addItem">Add</button>
     </div>
 </template>
   
 <script>
 export default {
-    name: 'ToDoInput'
+    name: 'ToDoInput',
+    data() {
+        return {
+            title: '',
+        };
+    }
+    , methods: {
+        addItem() {
+            if (this.title.trim() === '') {
+                return;
+            }
+            this.$store.commit('addItem', {
+                title: this.title,
+                completed: false,
+                id: this.$store.state.items.length + 1
+            });
+            this.title = '';
+        }
+    }
 }
 </script>
   
@@ -48,6 +67,7 @@ input {
     width: 200px;
     background: #d9d9d9;
     color: #555;
+    cursor: pointer;
 }
 
 @media screen and (max-width: 600px) {
@@ -55,13 +75,14 @@ input {
         flex-direction: column;
         height: 80px;
     }
+
     input {
         width: 100%;
     }
 
     .custom-button {
         width: 100%;
-        
+
     }
 
 
