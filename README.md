@@ -10,10 +10,10 @@ Vue Do is a sample to do list using Vue.js and Vuex for state management.
 
 # 🏁 Get started <a name = "install"></a>
 ```
-git clone https://github.com/gaserashraf/Regex-to-NFA-DFA.git
+git clone https://github.com/gaserashraf/Vue-Do.git
 ```
 ```
-cd Regex-to-NFA-DFA
+cd Vue-Do
 ```
 ```
 npm install
